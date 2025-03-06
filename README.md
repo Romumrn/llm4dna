@@ -50,7 +50,7 @@ module load miniforge
 module load cuda
 set the cuda variable with which nvcc
 
-
+(not just need to load the good module)
 Frist I will creat a new conda enviroenment 
 (pyhton 11 because of the compatbility) 
 conda create -n evo  python=3.11
@@ -64,4 +64,45 @@ Currently Loaded Modulefiles:
  1) cuda/11.7.1                4) gcc/8.5.0(8.3.1:8.4.1)   7) magma/2.7.0-cuda  10) libjpeg-turbo/2.1.3    
  2) nccl/2.12.12-1-cuda        5) openmpi/4.1.1-cuda       8) sox/14.4.2        11) ffmpeg/4.2.2           
  3) cudnn/8.5.0.96-11.7-cuda   6) intel-mkl/2020.4         9) sparsehash/2.0.3  12) pytorch-gpu/py3/2.0.1  
-(pytorch-gpu-2.0.1+py3.10.12) [ulg68gj@jean-zay3: evo2]$ 
+
+command: 
+
+```
+module load pytorch-gpu/py3/2.5.0 
+Loading pytorch-gpu/py3/2.5.0
+  Loading requirement: gcc/10.1.0 cuda/12.2.0 nccl/2.21.5-1-cuda cudnn/8.9.7.29-cuda openmpi/4.1.5-cuda intel-mkl/2020.4
+    magma/2.7.2-cuda sox/14.4.2 hdf5/1.12.0-mpi-cuda libjpeg-turbo/2.1.3 ffmpeg/6.1.1 graphviz/2.49.0
+(pytorch-gpu-2.5.0+py3.12.7) [ulg68gj@jean-zay3: ~]$ cd $WORK
+(pytorch-gpu-2.5.0+py3.12.7) [ulg68gj@jean-zay3: ulg68gj]$ cd evo2/
+(pytorch-gpu-2.5.0+py3.12.7) [ulg68gj@jean-zay3: evo2]$ pip install .
+```
+leads to an issue
+
+```
+        × python setup.py egg_info did not run successfully.
+        │ exit code: 1
+        ╰─> [9 lines of output]
+            Traceback (most recent call last):
+              File "<string>", line 2, in <module>
+              File "<pip-setuptools-caller>", line 34, in <module>
+              File "/tmp/pip-install-2pe8cl72/transformer-engine-torch_6db1de72f3b746cabcd7c636d851208f/setup.py", line 15, in <module>
+                from torch.utils.cpp_extension import BuildExtension
+              File "/linkhome/rech/genidl01/ulg68gj/.local/lib/python3.12/site-packages/torch/__init__.py", line 367, in <module>
+                from torch._C import *  # noqa: F403
+                ^^^^^^^^^^^^^^^^^^^^^^
+            ImportError: /linkhome/rech/genidl01/ulg68gj/.local/lib/python3.12/site-packages/torch/lib/../../nvidia/cusparse/lib/libcusparse.so.12: undefined symbol: __nvJitLinkComplete_12_4, version libnvJitLink.so.12
+            [end of output]
+```
+
+I think that it's an issue with the version of python and the version of pythroch
+
+### Test NT
+
+Availiable of hugging face and github though JAX
+https://huggingface.co/InstaDeepAI
+https://github.com/instadeepai/nucleotide-transformer
+
+Clone the repository to your local machine.
+Install the package by running pip install .
+
+work but OSError: [Errno 122] Disk quota exceeded
