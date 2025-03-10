@@ -56,19 +56,16 @@ I aimed to test the use of Evo 2 on Jean Zay to generate sequences and assess fe
 1. **Load Modules**:
 
    ```bash
-   module load miniforge
-   module load cuda
-   export CUDA_HOME=$(which nvcc)
-   ```
+   module load pytorch-gpu/py3/2.4.0
+   module list
+   1) cuda/12.2.0 4) gcc/10.1.0 7) magma/2.7.2-cuda 10)
+   libjpeg-turbo/2.1.3
+   2) nccl/2.19.3-1-cuda 5) openmpi/4.1.5-cuda 8) sox/14.4.2 11)
+   ffmpeg/6.1.1
+   3) cudnn/8.9.5.30-cuda 6) intel-mkl/2020.4 9) hdf5/1.12.0-mpi-cuda 12)
+   pytorch-gpu/py3/2.4.0
 
-2. **Create a Conda Environment**:
-
-   ```bash
-   conda create -n evo python=3.11
-   conda activate evo
-   ```
-
-3. **Clone and Install Evo 2**:
+2. **Clone and Install Evo 2**:
 
    ```bash
    git clone https://github.com/ArcInstitute/evo2.git
