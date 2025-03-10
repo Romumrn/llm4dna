@@ -1,7 +1,3 @@
-I've revised and enhanced your document for clarity and coherence:
-
----
-
 ## Large Language Models for DNA Analysis
 
 This repository explores the application of Large Language Models (LLMs) in analyzing DNA sequences using various models.
